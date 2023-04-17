@@ -1,11 +1,12 @@
 import React from "react";
+import './index.css';
 
 function App() {
-  return(
+  return (
     <div>
-      <p>Hola Mundo</p>
+      <p className="text-2xl">Hola Mundo</p>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
