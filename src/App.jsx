@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.css";
+import CrossIcon from "./Components/Iconos/CrossIcon";
 
 function App() {
   return (
@@ -25,36 +26,48 @@ function App() {
       </header>
 
       <main className="container mx-auto px-4 mt-8">
-        <div className="bg-white rounded-md px-4">
-          <article>
-            <button className="inline-block h-5 w-5 rounded-full border-2"></button>
-            <p className="text-gray-600">
+        <div className="bg-white rounded-md [&>article]:px-4">
+          <article className="flex gap-4 border-b-gray-400 py-4 border-b">
+            <button className="inline-block h-5 w-5 rounded-full border-2 flex-none"></button>
+            <p className="text-gray-600 grow">
               Complete oline Javascript curse with PMZ
             </p>
-            <button>Exit</button>
+            <button className="flex-none">
+              <CrossIcon />
+            </button>
           </article>
-          <article>
-            <button>circulo</button>
-            <p>Complete oline Javascript curse with PMZ</p>
-            <button>Exit</button>
+          <article className="flex gap-4 border-b-gray-400 py-4 border-b">
+            <button className="inline-block h-5 w-5 rounded-full border-2 flex-none"></button>
+            <p className="text-gray-600 grow">
+              Complete oline Javascript curse with PMZ
+            </p>
+            <button className="flex-none">
+              <CrossIcon />
+            </button>
           </article>
-          <article>
-            <button>circulo</button>
-            <p>Complete oline Javascript curse with PMZ</p>
-            <button>Exit</button>
+          <article className="flex gap-4 border-b-gray-400 py-4 border-b">
+            <button className="inline-block h-5 w-5 rounded-full border-2 flex-none"></button>
+            <p className="text-gray-600 grow">
+              Complete oline Javascript curse with PMZ
+            </p>
+            <button className="flex-none">
+              <CrossIcon />
+            </button>
           </article>
-        </div>
 
-        <section>
-          <span>5 Items left</span>
-          <button>Clear Complete</button>
-        </section>
+          <section className="py-4 px-4 flex justify-between">
+            <span className="text-gray-400">5 Items left</span>
+            <button className="text-gray-400">Clear Complete</button>
+          </section>
+        </div>
       </main>
 
-      <section className="px-auto container mx-auto">
-        <button>All</button>
-        <button>Active</button>
-        <button>Completed</button>
+      <section className="container mx-auto mt-8 px-4">
+        <div className="flex justify-center bg-white p-4 rounded-md gap-4">
+          <button className="hover:text-blue-500">All</button>
+          <button>Active</button>
+          <button>Completed</button>
+        </div>
       </section>
       <p className="text-center">Drag and drop to reorder list</p>
     </div>
