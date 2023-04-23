@@ -15,6 +15,10 @@ function App() {
             <MoonIcon fill="#ff29ea" />
           </button>
         </div>
+      </header>
+
+      <main className="container mx-auto px-4 mt-8">
+        {/*TodoCreate*/}
         <form
           className="flex items-center gap-4 overflow-hidden  
         rounded-md bg-white py-4 px-4 mt-8"
@@ -26,9 +30,7 @@ function App() {
             className="w-full outline-none text-gray-400"
           />
         </form>
-      </header>
-
-      <main className="container mx-auto px-4 mt-8">
+        {/*TodoList (TodoItems) TodoUpdate TodoDelete*/}
         <div className="bg-white rounded-md [&>article]:px-4">
           <article className="flex gap-4 border-b-gray-400 py-4 border-b">
             <button className="inline-block h-5 w-5 rounded-full border-2 flex-none"></button>
@@ -57,12 +59,12 @@ function App() {
               <CrossIcon />
             </button>
           </article>
-
-          <section className="py-4 px-4 flex justify-between">
-            <span className="text-gray-400">5 Items left</span>
-            <button className="text-gray-400">Clear Complete</button>
-          </section>
         </div>
+        {/*TodoComputed*/}
+        <section className="py-4 px-4 flex justify-between">
+          <span className="text-gray-400">5 Items left</span>
+          <button className="text-gray-400">Clear Complete</button>
+        </section>
       </main>
 
       <section className="container mx-auto mt-8 px-4">
