@@ -1,16 +1,19 @@
 import React from "react";
 import "./index.css";
 import CrossIcon from "./Components/Iconos/CrossIcon";
+import MoonIcon from "./Components/Iconos/MoonIcon";
 
 function App() {
   return (
     <div className="bg-[url('./assets/images/bg-mobile-light.jpg')] bg-contain bg-no-repeat bg-gray-300 min-h-screen">
-      <header className="container mx-auto px-4">
+      <header className="container mx-auto px-4 pt-8">
         <div className="flex justify-between">
           <h1 className="text-3xl uppercase text-white font-semibold tracking-[0.3em]">
             todo
           </h1>
-          <button>Luna</button>
+          <button>
+            <MoonIcon fill="#ff29ea" />
+          </button>
         </div>
         <form
           className="flex items-center gap-4 overflow-hidden  
@@ -64,9 +67,9 @@ function App() {
 
       <section className="container mx-auto mt-8 px-4">
         <div className="flex justify-center bg-white p-4 rounded-md gap-4">
-          <button className="hover:text-blue-500">All</button>
-          <button>Active</button>
-          <button>Completed</button>
+          <button className="hover:text-blue-600">All</button>
+          <button className="hover:text-blue-600">Active</button>
+          <button className="hover:text-blue-600">Completed</button>
         </div>
       </section>
       <p className="text-center">Drag and drop to reorder list</p>
