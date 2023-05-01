@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./index.css";
-//import CrossIcon from "./Components/Iconos/CrossIcon";
-//import MoonIcon from "./Components/Iconos/MoonIcon";
 import Header from "./Components/Header";
 import TodoCreate from "./Components/TodoCreate";
 import TodoList from "./Components/TodoList";
@@ -27,12 +25,25 @@ function App() {
     };
     setTodos([...todos, newTodo]);
   };
+
+  const removeTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
+  const updateTodo = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
   return (
     <div className="bg-[url('./assets/images/bg-mobile-light.jpg')] bg-contain bg-no-repeat bg-gray-300 min-h-screen">
       <Header />
       <main className="container mx-auto px-4 mt-8">
-        <TodoCreate createTodo={createTodo} />
-        <TodoList todos={todos} />
+        <TodoCreate createTodo={createTodo}/>
+        <TodoList todos={todos}  removeTodo={removeTodo} updateTodo={updateTodo} />
         <TodoComputed />
         <TodoFilter />
       </main>
