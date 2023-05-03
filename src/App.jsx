@@ -38,14 +38,44 @@ function App() {
     );
   };
 
+  const computedItemsLeft = todos.filter((todo) => !todo.completed).length;
+
+  const clearCompled = () => {
+    setTodos(todos.filter((todo) => !todo.completed));
+  };
+
+  const [filter, setFilter] = useState("all");
+
+  const changerFilter = (filter) => setFilter(filter);
+
+  const filteredTodos = () => {
+    switch (filter) {
+      case "all":
+        return todos;
+      case "active":
+        return todos.filter((todo) => !todo.completed);
+      case "completed":
+        return todos.filter((todo) => todo.completed);
+      default:
+        return todos;
+    }
+  };
+
   return (
     <div className="bg-[url('./assets/images/bg-mobile-light.jpg')] bg-contain bg-no-repeat bg-gray-300 min-h-screen">
       <Header />
       <main className="container mx-auto px-4 mt-8">
-        <TodoCreate createTodo={createTodo}/>
-        <TodoList todos={todos}  removeTodo={removeTodo} updateTodo={updateTodo} />
-        <TodoComputed />
-        <TodoFilter />
+        <TodoCreate createTodo={createTodo} />
+        <TodoList
+          todos={filteredTodos()}
+          removeTodo={removeTodo}
+          updateTodo={updateTodo}
+        />
+        <TodoComputed
+          computedItemsLeft={computedItemsLeft}
+          clearCompled={clearCompled}
+        />
+        <TodoFilter changerFilter={changerFilter} filter={filter} />
       </main>
 
       <footer className="text-center">Drag and drop to reorder list</footer>
