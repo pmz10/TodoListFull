@@ -1,3 +1,5 @@
+import { DragDropContext } from "@hello-pangea/dnd";
+
 import React, { useEffect, useState } from "react";
 import "./index.css";
 import Header from "./Components/Header";
@@ -6,15 +8,15 @@ import TodoList from "./Components/TodoList";
 import TodoComputed from "./Components/TodoComputed";
 import TodoFilter from "./Components/TodoFilter";
 
-//const initialStateTodos = [
-//  { id: 1, title: "Lavar platos", completed: true },
-//  { id: 2, title: "Pasear a mis mascotas", completed: true },
-//  { id: 3, title: "Tender mi cama", completed: true },
-//  { id: 4, title: "Leer 20 paginas", completed: true },
-//  { id: 5, title: "Limpar un par de zapatos", completed: true },
-//];
-
 const initialStateTodos = JSON.parse(localStorage.getItem("todos")) || [];
+
+const reorder = (list, startIndex, endIndex) => {
+  const result = [...list];
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
 
 function App() {
   const [todos, setTodos] = useState(initialStateTodos);
@@ -67,16 +69,32 @@ function App() {
     }
   };
 
+  const handleDragEnd = (result) => {
+    const { destination, source } = result;
+    if (!destination) return;
+    if (
+      source.index === destination.index &&
+      source.droppableId === destination.droppableId
+    )
+      return;
+
+    setTodos((prevTasks) =>
+      reorder(prevTasks, source.index, destination.index)
+    );
+  };
+
   return (
     <div className="bg-[url('./assets/images/bg-mobile-light.jpg')] bg-contain bg-no-repeat bg-gray-300 min-h-screen dark:bg-gray-900 dark:bg-[url('./assets/images/bg-mobile-dark.jpg')] md:bg-[url('./assets/images/bg-desktop-light.jpg')] md:dark:bg-[url('./assets/images/bg-desktop-dark.jpg')]">
       <Header />
       <main className="container mx-auto px-4 mt-8 md:max-w-xl">
         <TodoCreate createTodo={createTodo} />
-        <TodoList
-          todos={filteredTodos()}
-          removeTodo={removeTodo}
-          updateTodo={updateTodo}
-        />
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <TodoList
+            todos={filteredTodos()}
+            removeTodo={removeTodo}
+            updateTodo={updateTodo}
+          />
+        </DragDropContext>
         <TodoComputed
           computedItemsLeft={computedItemsLeft}
           clearCompled={clearCompled}
